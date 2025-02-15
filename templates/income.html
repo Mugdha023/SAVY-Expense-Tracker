@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}Income{% endblock title %}
+{% block body %}
+    <div class="container my-3">
+        <h2>Incomes</h2>
+        <form action="/income" method="POST">
+            <div class="mb-3">
+                <label for="amount" class="form-label">Amount</label>
+                <input type="text" class="form-control" name="amount" id="amount" required>  <!-- Corrected here -->
+            </div>
+            <div class="mb-3">
+                <label for="desc" class="form-label">Description</label>
+                <input type="text" class="form-control" name="desc" id="desc" required>
+            </div>
+            <div class="mb-3">
+                <label for="category" class="form-label">Category:</label>
+                <select class="form-select" id="category" name="category" required>
+                    <option value="Category">Category</option>
+                    <option value="Salary">Salary</option>
+                    <option value="Bonus">Bonus</option>
+                    <option value="Stock Market">Stock Market</option>
+                    <option value="Investment">Investment</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-dark">Add Income</button>
+        </form>
+        <hr>
+        <h4>Your Incomes</h4>
+        {% if allIncome|length == 0 %}
+            <div class="alert alert-dark" role="alert">
+                No incomes found. Add your first income now!
+            </div>
+        {% else %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">SNo</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Date & Time</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for income in allIncome %}
+                        <tr>
+                            <th scope="row">{{ loop.index }}</th>
+                            <td>{{ income.amount }}</td>
+                            <td>{{ income.desc }}</td>
+                            <td>{{ income.category }}</td>
+                            <td>{{ income.date_submitted }}</td>
+                            <td>
+                                <a href="/update/income/{{ income.id }}" class="btn btn-warning btn-sm mx-2">Edit</a>
+                                <a href="/delete_income/{{ income.id }}" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+{% endblock body %}

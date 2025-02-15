@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Home</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .welcome-text h2 {
+            font-weight: 700;
+            color: #0b0b0b;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #0b0c0c;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+        }
+
+        .login-container input[type="text"]:focus,
+        .login-container input[type="password"]:focus {
+            outline: none;
+            border: 2px solid #101011;
+        }
+
+        .login-container input[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            background-color: #121213;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-container input[type="submit"]:hover {
+            background-color: #080808;
+        }
+
+        .login-container p {
+            margin-top: 15px;
+            color: #777;
+        }
+
+        .login-container a {
+            color: #0e0e0f;
+            text-decoration: none;
+        }
+
+        .login-container a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .login-container {
+                padding: 20px;
+            }
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="welcome-text">
+        <h2>Welcome to Savy: Expense Tracker</h2>
+    </div>
+    
+    <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTvQqS9h02A8xisfsMRHZicp9PVuPk38UqPcs2lY7OeVctroXy2" alt="Description of image">
+    
+    <div class="login-container">
+        <h2>Login</h2>
+        <form method="POST">
+            <input type="text" id="username" name="username" placeholder="Username" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <input type="submit" value="Login">
+            <p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a></p>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %} Update Expense{% endblock title %}
+{% block body %}
+    <div class="container my-3">
+        <h2>Update Expense</h2>
+        <form action="/update/{{ expense.sno }}" method="POST">
+            <div class="mb-3">
+              <label for="amount" class="form-label">Amount</label>
+              <input type="text" class="form-control" name="amount" id="amount" value="{{ expense.amount }}" required> 
+            </div>
+            <div class="mb-3">
+              <label for="desc" class="form-label">Description</label>
+              <input type="text" class="form-control" value="{{ expense.desc }}" name="desc" id="desc" required>
+            </div>
+            <div class="mb-3">
+                <label for="category">Category:</label>
+                <select id="category" name="category" required>
+                    <option value="Food" {% if expense.category == 'Food' %}selected{% endif %}>Food</option>
+                    <option value="Rent" {% if expense.category == 'Rent' %}selected{% endif %}>Rent</option>
+                    <option value="Shopping" {% if expense.category == 'Shopping' %}selected{% endif %}>Shopping</option>
+                    <option value="Transport" {% if expense.category == 'Transport' %}selected{% endif %}>Transport</option>
+                    <option value="Entertainment" {% if expense.category == 'Entertainment' %}selected{% endif %}>Entertainment</option>
+                    <option value="Health" {% if expense.category == 'Health' %}selected{% endif %}>Health</option>
+                    <option value="Other" {% if expense.category == 'Other' %}selected{% endif %}>Other</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-info">Update</button>
+        </form>
+    </div>
+{% endblock body %}

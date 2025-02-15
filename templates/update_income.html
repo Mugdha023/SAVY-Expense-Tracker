@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %} Update Income{% endblock title %}
+{% block body %}
+    <div class="container my-3">
+        <h2>Update Income</h2>
+        <form action="/update/income/{{ income.id }}" method="POST">
+            <div class="mb-3">
+              <label for="amount" class="form-label">Amount</label>
+              <input type="text" class="form-control" name="amount" id="amount" value="{{ income.amount}}" required> 
+            </div>
+            <div class="mb-3">
+              <label for="desc" class="form-label">Description</label>
+              <input type="text" class="form-control" value="{{ income.desc }}" name="desc" id="desc" required>
+            </div>
+            <div class="mb-3">
+                <label for="category">Category:</label>
+                <select id="category" name="category" required>
+                    <option value="Salary" {% if income.category == 'Salary' %}selected{% endif %}>Salary</option>
+                    <option value="Bonus" {% if income.category == 'Bonus' %}selected{% endif %}>Bonus</option>
+                    <option value="Investment" {% if income.category == 'Investment' %}selected{% endif %}>Investment</option>
+                    <option value="Other" {% if income.category == 'Other' %}selected{% endif %}>Other</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-info">Update</button>
+        </form>
+    </div>
+{% endblock body %}
