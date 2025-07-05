@@ -5,13 +5,11 @@ import os
 import logging
 from logging import FileHandler
 import importlib.metadata
-from flask_migrate import Migrate
 import pandas as pd
 import matplotlib.pyplot as plt
 import io
 from flask import make_response
 from sqlalchemy import func
-
 
 # Print the version of Flask-SQLAlchemy
 version = importlib.metadata.version("flask-sqlalchemy")
@@ -302,14 +300,18 @@ def e():
     return render_template('expenses.html', e=e, total_amount=total_amount)
 
 
-
 if __name__ == "__main__":
+    # This block only runs when you run python app1.py directly
     with app1.app_context():
         db.create_all()  # Create tables based on models defined
+    app1.run(debug=True)
+else:
+    # This block is for Gunicorn / production
+    with app1.app_context():
+        db.create_all()  # Ensure tables are created on startup
+
 # Set up logging to a file in the current project directory
 log_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'error.log')
 file_handler = FileHandler(log_path)
 file_handler.setLevel(logging.ERROR)
 app1.logger.addHandler(file_handler)
-
-app1.run(debug=True)
